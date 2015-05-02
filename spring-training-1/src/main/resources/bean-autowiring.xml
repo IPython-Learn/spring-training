@@ -1,0 +1,19 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:p="http://www.springframework.org/schema/p" default-autowire="byName"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd ">
+
+
+	<bean id="employee"  class="com.innominds.spring.beans.Employee" p:name="Ram" />
+	
+	<bean id="architect"  class="com.innominds.spring.beans.Employee" p:name="Raheem" />
+	
+	<bean id="hr"  class="com.innominds.spring.beans.Employee" p:name="robert" />
+	
+
+	<bean id="organization" name="organizationLocal,org,innoOrg" class="com.innominds.spring.beans.Organization" p:name="Innominds"/>
+	
+	
+
+
+</beans>

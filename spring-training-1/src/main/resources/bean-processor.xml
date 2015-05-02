@@ -1,0 +1,20 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd ">
+
+	<bean id="employee" class="com.innominds.spring.beans.Employee"
+		p:name="Thiru" />
+
+	<bean id="employee2" class="com.innominds.spring.beans.Employee">
+		<property name="name" value="Sandeep" />
+	</bean>
+
+	<bean id="employee3" class="com.innominds.spring.beans.Employee">
+		<constructor-arg value="TomChilders"/>
+	</bean>
+	
+
+	<bean class="com.innominds.spring.beans.processor.EmployeeBeanProcessor" />
+
+
+</beans>

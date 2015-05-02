@@ -1,0 +1,17 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd ">
+
+
+	<bean id="abstractAddress" abstract="true">
+		<property name="city" value="Hyderabad" />
+		<property name="address" value="Q city , Gachibowli" />
+		<property name="phone" value="9000211024" />
+		<property name="zip" value="500049" />
+	</bean>
+
+	<bean id="address" class="com.innominds.spring.beans.Address"
+		parent="abstractAddress" p:zip="500032" />
+
+
+</beans>
