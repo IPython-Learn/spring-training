@@ -20,6 +20,9 @@ public class Main {
      */
     public static void main(String[] args) {
         //
+        
+        //FileSystemXmlApplicationContext
+        //ClassPathXmlApplicationContext
         final AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(InnomindsAppConfig.class);
 
         System.out.println(ctx.getBean("address"));

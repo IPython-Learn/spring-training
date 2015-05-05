@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd ">
 
 
-	<bean id="abstractAddress" abstract="true">
+	<bean id="addressModel" abstract="true">
 		<property name="city" value="Hyderabad" />
 		<property name="address" value="Q city , Gachibowli" />
 		<property name="phone" value="9000211024" />
@@ -11,7 +11,7 @@
 	</bean>
 
 	<bean id="address" class="com.innominds.spring.beans.Address"
-		parent="abstractAddress" p:zip="500032" />
+		parent="addressModel" p:zip="500032" />
 
 
 </beans>
