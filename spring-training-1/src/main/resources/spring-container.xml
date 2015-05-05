@@ -2,7 +2,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd ">
 
-	<bean id="employee" name="developer,architect,manager" class="com.innominds.spring.beans.Employee" />
+
+<!--  there are two attributes for a bean tag to identify spring bean  
+  1. id   - unique in the entire configuration file 
+  2.  name - can have multiple names with comma separated.  these are called alias names
+  -->
+	<bean id="employee" name="developer,architect,manager" class="com.innominds.spring.beans.Employee"  />
 
 
 
