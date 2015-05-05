@@ -30,7 +30,7 @@ public class AspectExample {
             employeeService.saveEmployee(new Employee("John", "Developer"));
 
             System.out.println(employeeService.getAllEmployees());
-            // http://www.journaldev.com/2583/spring-aop-example-tutorial-aspect-advice-pointcut-joinpoint-annotations-xml-configuration
+
         }
 
     }

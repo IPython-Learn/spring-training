@@ -34,9 +34,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void saveEmployee(Employee employee) {
+    public int saveEmployee(Employee employee) {
         LOGGER.info("Save Employee ");
-        employeeDao.save(employee);
+        return employeeDao.save(employee);
+    }
+
+    @Override
+    public void deleteEmployee(int id) {
+        employeeDao.deleteEmployee(id);
     }
 
 }

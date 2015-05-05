@@ -22,6 +22,12 @@ public interface EmployeeService {
 
     /**
      * @param employee
+     * @return status
      */
-    public void saveEmployee(Employee employee);
+    public int saveEmployee(Employee employee);
+
+    /**
+     * @param id
+     */
+    public void deleteEmployee(int id);
 }

@@ -39,7 +39,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     @PostConstruct
     public void initializeDB() {
 
-        jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS `employee` (" + "`id` int(11) NOT NULL AUTO_INCREMENT," + "`name` varchar(45) DEFAULT NULL,"
+        jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS `employee` (" + "`id` int(11) NOT NULL AUTO_INCREMENT," + "`name` varchar(45) NOT NULL,"
                 + "`designation` varchar(45) DEFAULT NULL," + "PRIMARY KEY (`id`)" + ")");
     }
 

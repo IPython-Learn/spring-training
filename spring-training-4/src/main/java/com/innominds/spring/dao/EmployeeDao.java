@@ -23,6 +23,12 @@ public interface EmployeeDao {
 
     /**
      * @param employee
+     * @return status
      */
-    public void save(Employee employee);
+    public int save(Employee employee);
+
+    /**
+     * @param id
+     */
+    public void deleteEmployee(int id);
 }
