@@ -23,7 +23,7 @@ public class AspectExample {
 
         //
 
-        try (ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring-jdbc.xml")) {
+        try (ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring-aop.xml")) {
 
             final EmployeeService employeeService = (EmployeeService) ctx.getBean("employeeService");
 
