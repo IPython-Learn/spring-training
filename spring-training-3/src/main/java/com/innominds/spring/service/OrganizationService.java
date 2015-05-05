@@ -3,6 +3,10 @@
  */
 package com.innominds.spring.service;
 
+import java.util.List;
+
+import com.innominds.spring.beans.Organization;
+
 /**
  * OrganizationService.java
  *
@@ -12,5 +16,15 @@ package com.innominds.spring.service;
 public interface OrganizationService {
 
     //
+
+    /**
+     * @return organization creates and returns organization object
+     */
+    public List<Organization> getAllOrganizations();
+
+    /**
+     * @param organization
+     */
+    public void saveOrganization(Organization organization);
 
 }

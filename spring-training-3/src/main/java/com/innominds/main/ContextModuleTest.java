@@ -5,8 +5,8 @@ package com.innominds.main;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.innominds.spring.beans.Employee;
-import com.innominds.spring.service.EmployeeService;
+import com.innominds.spring.beans.Organization;
+import com.innominds.spring.service.OrganizationService;
 
 /**
  * ContextModuleTest.java
@@ -25,14 +25,19 @@ public class ContextModuleTest {
 
         try (ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring-jdbc.xml")) {
 
-            final EmployeeService employeeService = (EmployeeService) ctx.getBean("employeeService");
+            /*
+             * final EmployeeService employeeService = (EmployeeService) ctx.getBean("employeeService");
+             * 
+             * employeeService.saveEmployee(new Employee("John", "Developer"));
+             * 
+             * System.out.println(employeeService.getAllEmployees());
+             */
+            final OrganizationService organizationService = (OrganizationService) ctx.getBean("organizationService");
+            organizationService.saveOrganization(new Organization("Innominds", "QCity"));
 
-            employeeService.saveEmployee(new Employee("John", "Developer"));
-
-            System.out.println(employeeService.getAllEmployees());
+            System.out.println(organizationService.getAllOrganizations());
 
         }
 
     }
-
 }
