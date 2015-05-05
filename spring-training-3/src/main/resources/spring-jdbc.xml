@@ -1,16 +1,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	        			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd ">
 
 	<context:annotation-config /> <!-- this is optional if component-scan element present -->
-	
+
 	<context:component-scan base-package="com.innominds.spring" />
 
 	<context:property-placeholder location="classpath:jdbc.properties" />
 
-	
+
 	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="${database.driver}" />
@@ -24,6 +25,13 @@
 		<property name="partitionCount" value="3" />
 		<property name="acquireIncrement" value="5" />
 		<property name="statementsCacheSize" value="100" />
+	</bean>
+
+
+
+	<!-- construction injection -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSource" />
 	</bean>
 
 

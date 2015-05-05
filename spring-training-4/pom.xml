@@ -2,9 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.innominds.training.j2ee</groupId>
-	<artifactId>spring-training-3</artifactId>
+	<artifactId>spring-training-4</artifactId>
 	<version>1.0</version>
-
 
 
 	<parent>
@@ -21,13 +20,11 @@
 			<artifactId>spring-context</artifactId>
 		</dependency>
 
-
 		<!-- JDBC Support -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 		</dependency>
-
 
 		<dependency>
 			<groupId>com.jolbox</groupId>
@@ -59,10 +56,20 @@
 		</dependency>
 
 
+		<!-- AspectJ dependencies -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjtools</artifactId>
+		</dependency>
+
+
 	</dependencies>
-
-
-
 
 	<build>
 		<plugins>
@@ -76,6 +83,7 @@
 			</plugin>
 		</plugins>
 	</build>
+
 
 
 </project>
