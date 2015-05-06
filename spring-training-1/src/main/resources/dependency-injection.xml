@@ -13,7 +13,7 @@
 
 	<bean id="organization" class="com.innominds.spring.beans.Organization">
 		<!-- setter based injection -->
-		<property name="name" value="IversionOfControl" />
+		<property name="name" value="#{'SpELValueManipulation'.toUpperCase()}" />
 	</bean>
 	
 	
