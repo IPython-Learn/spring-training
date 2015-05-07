@@ -28,7 +28,7 @@ public class BeanFactoryContainer {
 
         final DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
         final XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
-        reader.setValidating(false);
+        // reader.setValidating(false);
 
         reader.loadBeanDefinitions(new ClassPathResource("spring-container.xml"));
 

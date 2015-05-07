@@ -26,26 +26,27 @@ public class EmployeeBeanProcessor implements BeanPostProcessor {
      */
     public static void main(String[] args) {
 
-        final ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("bean-processor.xml");
+        try (ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("bean-processor.xml")) {
 
-        EmployeeBeanProcessor.LOGGER.info(" Beans loaded successfully ");
+            EmployeeBeanProcessor.LOGGER.info("################### Beans loaded successfully ");
 
-        System.err.println("   Employee Bean ::  " + ctx.getBean("employee"));
+            System.err.println("   Employee Bean ::  " + ctx.getBean("employee"));
 
-        final Employee employee = (Employee) ctx.getBean("employee");
+            final Employee employee = (Employee) ctx.getBean("employee");
 
-        System.err.println(employee.getName());
+            System.err.println(employee.getName());
+        }
 
         // closing the container
-        ctx.close();
-
     }
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+
         EmployeeBeanProcessor.LOGGER.info("postProcessBeforeInitialization  : " + bean + "  with name : " + beanName);
 
-        ((Employee) bean).setName("Name has Hijacked by Processor");
+        System.err.println("==========  " + ((Employee) bean).getName());
+        ((Employee) bean).setName("postProcessBeforeInitialization");
 
         return bean;
     }
@@ -55,6 +56,7 @@ public class EmployeeBeanProcessor implements BeanPostProcessor {
 
         EmployeeBeanProcessor.LOGGER.info("postProcessAfterInitialization  : " + bean + "  with name : " + beanName);
 
+        ((Employee) bean).setName("postProcessAfterInitialization");
         return bean;
     }
 

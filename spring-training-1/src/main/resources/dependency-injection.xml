@@ -11,7 +11,7 @@
 		<property name="organization" ref="organization" />
 	</bean>
 
-	<bean id="organization" class="com.innominds.spring.beans.Organization">
+	<bean id="company" name="organization" class="com.innominds.spring.beans.Organization">
 		<!-- setter based injection -->
 		<property name="name" value="#{'SpELValueManipulation'.toUpperCase()}" />
 	</bean>

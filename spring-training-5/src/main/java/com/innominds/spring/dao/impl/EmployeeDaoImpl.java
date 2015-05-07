@@ -13,6 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import com.innominds.spring.beans.Employee;
 import com.innominds.spring.dao.EmployeeDao;
@@ -33,11 +38,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    PlatformTransactionManager platformTransactionManager;
+
+    @Autowired
+    TransactionTemplate transactionTemplate;
+
     /**
      * creates database table if it not exists. this one life cycle method declaration using java annotation.
      */
     @PostConstruct
     public void initializeDB() {
+
+        System.err.println("platformTransactionManager :: " + platformTransactionManager);
 
         jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS `employee` (" + "`id` int(11) NOT NULL AUTO_INCREMENT," + "`name` varchar(45) NOT NULL,"
                 + "`designation` varchar(45) DEFAULT NULL," + "PRIMARY KEY (`id`)" + ")");
@@ -56,16 +69,35 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
         final String SQL = "INSERT INTO EMPLOYEE(name,designation)  VALUES(?,?)";
 
-        return jdbcTemplate.update(SQL, new Object[] { employee.getName(), employee.getDesignation() });
+        jdbcTemplate.update(SQL, new Object[] { "WITHOUT_TX", "DEVELOPER" });
+
+        // use TransactionCallback handler if some result is returned
+        return transactionTemplate.execute(new TransactionCallback<Integer>() {
+            @Override
+            public Integer doInTransaction(TransactionStatus paramTransactionStatus) {
+
+                jdbcTemplate.update(SQL, new Object[] { "WITH_TX", "DEVELOPER" });
+
+                return jdbcTemplate.update(SQL, new Object[] { employee.getName(), employee.getDesignation() });
+            }
+        });
 
     }
 
     @Override
     public void deleteEmployee(int id) {
 
-        final String delQuery = " DELETE FROM EMPLOYEE WHERE ID = ?";
-        jdbcTemplate.update(delQuery, new Object[] { id });
+        final DefaultTransactionDefinition paramTransactionDefinition = new DefaultTransactionDefinition();
 
+        final TransactionStatus status = platformTransactionManager.getTransaction(paramTransactionDefinition);
+
+        try {
+            final String delQuery = " DELETE FROM EMPLOYEE WHERE ID = ?";
+            jdbcTemplate.update(delQuery, new Object[] { id });
+            platformTransactionManager.commit(status);
+        } catch (final Exception e) {
+            platformTransactionManager.rollback(status);
+        }
     }
 
 }

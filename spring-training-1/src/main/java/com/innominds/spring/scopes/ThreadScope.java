@@ -36,7 +36,7 @@ public class ThreadScope implements Scope {
 
     @Override
     public Object get(String name, ObjectFactory<?> objectFactory) {
-        System.err.println("get method  ");
+        System.err.println("get method  " + name);
 
         final Map<Object, Object> scope = (Map<Object, Object>) threadScope.get();
         Object object = scope.get(name);

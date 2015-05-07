@@ -4,17 +4,22 @@
 
 	<bean id="employee" class="com.innominds.spring.beans.Employee"
 		p:name="Thiru" />
-
+		
+		
+		
+<!-- 
 	<bean id="employee2" class="com.innominds.spring.beans.Employee">
 		<property name="name" value="Sandeep" />
 	</bean>
 
 	<bean id="employee3" class="com.innominds.spring.beans.Employee">
-		<constructor-arg value="TomChilders"/>
-	</bean>
-	
+		<constructor-arg value="TomChilders" />
+	</bean> -->
+
 
 	<bean class="com.innominds.spring.beans.processor.EmployeeBeanProcessor" />
 
+
+	<bean class="com.innominds.spring.beans.processor.ContainerPostProcessor" />
 
 </beans>

@@ -6,7 +6,6 @@ package com.innominds.application.config;
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Scope;
 
 import com.innominds.spring.beans.Address;
@@ -23,7 +22,6 @@ import com.innominds.spring.beans.Address;
  */
 @SuppressWarnings("static-method")
 @Configuration
-@Import(ParentAppConfig.class)
 public class InnomindsAppConfig {
 
     /**
