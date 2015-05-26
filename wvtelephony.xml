@@ -17,11 +17,7 @@
         function init() {
           
         gapi.hangout.onParticipantsChanged.add(function(participantChangeEvent){
-          
-          
-        alert(participantChangeEvent.getParticipants());
-          
-          
+            alert(participantChangeEvent.getParticipants());
         });
           
           
