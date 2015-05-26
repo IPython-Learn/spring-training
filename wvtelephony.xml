@@ -17,7 +17,14 @@
         function init() {
           
         gapi.hangout.onParticipantsChanged.add(function(participantChangeEvent){
-             alert(gapi.hangout.getParticipants());
+             console.log(gapi.hangout.getParticipants());
+
+            var[] participants=  gapi.hangout.getParticipants();
+
+              for(var participant : participants){
+                console.log(participant);
+              }
+
         });
           
           
