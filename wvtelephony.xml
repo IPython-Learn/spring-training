@@ -13,26 +13,38 @@
       <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-      <script>
+        <script>
         function init() {
-
+          
+        gapi.hangout.onParticipantsChanged(function(participantChangeEvent){
+          
+          
+        alert(participantChangeEvent.getParticipants());
+          
+          
+        });
+          
+          
           gapi.hangout.onAppVisible.add(function(){
-            
-            alert("Application how visible ");
+            alert("  Hangout Url "+gapi.hangout.getHangoutUrl());
+            alert("Application now visible canLocalParticipantMakeCalls "+gapi.hangout.telephone.canLocalParticipantMakeCalls());
+             
           });
-
+          
           // When API is ready...
           gapi.hangout.onApiReady.add(function() {
             try {
-              alert("started");
               console.log("started");
               var phoneNumber = gapi.hangout.getStartData();
-              alert("Dialling " + phoneNumber);
-              // var phoneNumber = "+919000211024";
+              
+              if(!gapi.hangout.isValidNumber(phoneNumber)){
+                phoneNumber="+919000211024"; 
+              }
+              
+              console.log(" Dialling " + phoneNumber);
        
               // You should perform validation of gd, but for now, ignore.
        
-              console.log(phoneNumber);
               document.getElementById("outputArea").innerHTML =
                   "Dialing: " + phoneNumber + " based on initial data...";
        
@@ -54,16 +66,15 @@
           <div class="col-md-8"></div>
           <div class="col-md-4">
             <div class="panel panel-default">
-              <div class="panel-heading">Sample</div>
+              <div class="panel-heading">VCall Panel</div>
               <div class="panel-body">
-                <div id="outputArea"></div>
+                <div id="outputArea">  Initializing...  </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      
       
     ]]>
   </Content>
