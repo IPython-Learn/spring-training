@@ -15,6 +15,12 @@
 
       <script>
         function init() {
+
+          gapi.hangout.onAppVisible.add(function(){
+            
+            alert("Application how visible ");
+          });
+
           // When API is ready...
           gapi.hangout.onApiReady.add(function() {
             try {
@@ -22,7 +28,7 @@
               console.log("started");
               var phoneNumber = gapi.hangout.getStartData();
               alert("Dialling " + phoneNumber);
-              // var phoneNumber = "++919000211024";
+              // var phoneNumber = "+919000211024";
        
               // You should perform validation of gd, but for now, ignore.
        
