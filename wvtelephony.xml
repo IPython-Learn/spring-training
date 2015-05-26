@@ -22,8 +22,8 @@
           
           
           gapi.hangout.onAppVisible.add(function(){
-            alert("  Hangout Url "+gapi.hangout.getHangoutUrl());
-            alert("Application now visible canLocalParticipantMakeCalls "+gapi.hangout.telephone.canLocalParticipantMakeCalls());
+            console.log("  Hangout Url "+gapi.hangout.getHangoutUrl());
+            console.log("Application now visible canLocalParticipantMakeCalls "+gapi.hangout.telephone.canLocalParticipantMakeCalls());
              
           });
           
