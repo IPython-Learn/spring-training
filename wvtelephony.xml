@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+  <ModulePrefs title="WideVoice Telephony">
+    <Require feature="rpc"/>
+    <Require feature="views"/>
+  </ModulePrefs>
+  <Content type="html">
+    <![CDATA[
+      <script src="//hangoutsapi.talkgadget.google.com/talkgadget/apps/gadgets/js/rpc.js"></script>
+      <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
+      <!-- Your application code -->
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+      <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+      <script>
+        function init() {
+          // When API is ready...
+          gapi.hangout.onApiReady.add(function() {
+            try {
+              alert("started");
+              console.log("started");
+              var phoneNumber = gapi.hangout.getStartData();
+              alert("Dialling " + phoneNumber);
+              // var phoneNumber = "++919000211024";
+       
+              // You should perform validation of gd, but for now, ignore.
+       
+              console.log(phoneNumber);
+              document.getElementById("outputArea").innerHTML =
+                  "Dialing: " + phoneNumber + " based on initial data...";
+       
+              gapi.hangout.telephone.beginCall(phoneNumber);
+            } catch (e) {
+              console.log('Error:');
+              console.log(e.stack);
+            }
+          });
+        }
+       
+        // Add startup listener immediately. If you need an
+        // OAuth 2.0 access token, your startup will be different.
+        init();
+      </script>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-8"></div>
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">Sample</div>
+              <div class="panel-body">
+                <div id="outputArea"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      
+    ]]>
+  </Content>
+</Module>
