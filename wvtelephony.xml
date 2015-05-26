@@ -14,25 +14,28 @@
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
         <script>
+      
+      
+      function makeCall(){
+      var phoneNumber=$('#phoneId').val();
+       if(!gapi.hangout.isValidNumber(phoneNumber)){
+         alert(" please enter valid number");
+         return;
+       }
+      
+       gapi.hangout.telephone.beginCall(phoneNumber);
+      
+        
+      }
         function init() {
           
         gapi.hangout.onParticipantsChanged.add(function(participantChangeEvent){
-            
-             console.log(gapi.hangout.getParticipants());
-
-            var[] participants=  gapi.hangout.getParticipants();
-
-              for(var participant : participants){
-                console.log(participant);
-              }
-
-
+            alert(gapi.hangout.getParticipants());
         });
           
-          
-          gapi.hangout.onAppVisible.add(function(){
-            console.log("  Hangout Url "+gapi.hangout.getHangoutUrl());
-            console.log("Application now visible canLocalParticipantMakeCalls "+gapi.hangout.telephone.canLocalParticipantMakeCalls());
+        gapi.hangout.onAppVisible.add(function(){
+            alert("  Hangout Url "+gapi.hangout.getHangoutUrl());
+            alert("Application now visible canLocalParticipantMakeCalls "+gapi.hangout.telephone.canLocalParticipantMakeCalls());
              
           });
           
@@ -43,7 +46,7 @@
               var phoneNumber = gapi.hangout.getStartData();
               
               if(!gapi.hangout.isValidNumber(phoneNumber)){
-                phoneNumber="4083316263"; 
+                phoneNumber="+919000211024"; 
               }
               
               console.log(" Dialling " + phoneNumber);
@@ -73,7 +76,7 @@
             <div class="panel panel-default">
               <div class="panel-heading">VCall Panel</div>
               <div class="panel-body">
-                <div id="outputArea">  Initializing...  </div>
+                <div id="outputArea"><input type="text"  id="phoneId" onclick="makeCall()"/> </div>
               </div>
             </div>
           </div>
