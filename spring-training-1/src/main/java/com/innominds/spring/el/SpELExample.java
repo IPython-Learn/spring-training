@@ -16,7 +16,7 @@ public class SpELExample {
      * @param args
      */
     public static void main(String[] args) {
-        SpELExample.logicalOperation();
+        SpELExample.mathematicalOperation();
         SpELExample.toUpperCase();
         SpELExample.getBytes();
         SpELExample.toUpperCase();
@@ -24,14 +24,19 @@ public class SpELExample {
     }
 
     /**
-     * logical operations
+     * mathematical operations
      */
-    public static void logicalOperation() {
+    public static void mathematicalOperation() {
 
-        final ExpressionParser parser = new SpelExpressionParser();
-        final Expression exp = parser.parseExpression("6*30+5-1");
-        final Integer message = exp.getValue(Integer.class);
-        System.out.println(message);
+    	
+    	final ExpressionParser parser = new SpelExpressionParser();
+      
+        
+        System.out.println(System.getProperty("user.home"));
+        System.out.println( parser.parseExpression("System.getProperty(\"user.home\")").getValue());
+        
+        
+        
     }
 
     /**
