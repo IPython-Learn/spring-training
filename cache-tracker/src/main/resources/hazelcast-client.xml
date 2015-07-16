@@ -1,24 +1,27 @@
 <hazelcast-client
-	xsi:schemaLocation="http://www.hazelcast.com/schema/client-config hazelcast-client-config-3.5.xsd"
+	xsi:schemaLocation="http://www.hazelcast.com/schema/client-config hazelcast-client-config-3.4.xsd"
 	xmlns="http://www.hazelcast.com/schema/client-config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
 	<!--Cluster name to connect -->
+
 	<group>
-		<name>dev</name>
-		<password>dev-pass</password>
+		<name>${cache.group.name}</name>
+		<password>${cache.group.password}</password>
 	</group>
+
 
 	<!--client properties -->
 	<properties>
 		<property name="hazelcast.client.connection.timeout">10000</property>
 		<property name="hazelcast.client.retry.count">6</property>
+		<property name="hazelcast.logging.type">${hazelcast.logging.type}</property>
 	</properties>
 
 	<!--Network configuration details -->
 	<network>
 		<cluster-members>
 			<!--initial cluster members to connect -->
-			<address>127.0.0.1</address>
+			<address>${cluster.member.address}</address>
 		</cluster-members>
 
 		<!--smart-routing : If true, client will route the key based operations 
@@ -26,32 +29,45 @@
 			of com.hazelcast.core.PartitionService.getPartitions() and doesn't guarantee 
 			that the operation will always be executed on the owner. The cached table 
 			is updated every 10 seconds. Default value is true. -->
-		<smart-routing>true</smart-routing>
-		
+		<smart-routing>${smart.routing.enbled}</smart-routing>
+
 		<!-- If true, client will redo the operations that were executing on the 
 			server and client lost the connection. This can be because of network, or 
 			simply because the member died. However it is not clear whether the application 
 			is performed or not. For idempotent operations this is harmless, but for 
 			non idempotent ones retrying can cause to undesirable effects. Note that 
 			the redo can perform on any member. -->
-		<redo-operation>true</redo-operation>
+		<redo-operation>{redo.operation.enabled}</redo-operation>
 
 		<socket-interceptor enabled="true">
 			<!--socket-interceptor configuration details -->
 		</socket-interceptor>
 
-		<aws enabled="false" connection-timeout-seconds="11">
-			<!--AWS configuration details -->
+
+		<aws enabled="${aws.discovery}" connection-timeout-seconds="${aws.timeout.seconds}">
+			<access-key>${aws.access.key}</access-key>
+			<secret-key>${aws.access.secret}</secret-key>
+			<!--optional, default is us-east-1 -->
+			<region>${aws.region}</region>
+			<!--optional, default is ec2.amazonaws.com. If set, region shouldn't be 
+				set as it will override this property -->
+			<host-header>${aws.host.header}</host-header>
+			<!-- optional, only instances belonging to this group will be discovered, 
+				default will try all running instances -->
+			<security-group-name>${aws.security.group}</security-group-name>
+
+			<tag-key>${aws.tag.key}</tag-key>
+			<tag-value>${aws.tag.value}</tag-value>
 		</aws>
+		
 	</network>
 
 	<!--local executor pool size -->
 	<executor-pool-size>40</executor-pool-size>
 
 	<!--security credentials configuration -->
-<!-- 	<security>
-		<credentials>com.hazelcast.security.UsernamePasswordCredentials</credentials>
-	</security> -->
+	<!-- <security> <credentials>com.hazelcast.security.UsernamePasswordCredentials</credentials> 
+		</security> -->
 
 	<listeners>
 		<!--listeners -->
@@ -67,12 +83,12 @@
 
 	<!--load balancer configuration -->
 	<!-- type can be "round-robin" or "random" -->
-	<load-balancer type="random" />
+	<load-balancer type="${load.balancer.type}" />
 
 	<near-cache name="mapName">
 		<!--near cache configuration details of a map -->
 	</near-cache>
-	
-	
+
+
 
 </hazelcast-client>
