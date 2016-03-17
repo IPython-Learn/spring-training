@@ -19,6 +19,7 @@ SPRING TRAINING CONTENT
 			
 4. spring-training-4   : spring aop introduction 
                         	a) logging as aspect to log the messages using aspectJ jdk proxy
+5. transaction management: programatic an declarative transaction management	
 			
 
        
